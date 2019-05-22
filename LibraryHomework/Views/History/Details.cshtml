@@ -1,0 +1,56 @@
+﻿@model LibraryStore.Domain.Entities.History
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>History</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BorrowedDay)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BorrowedDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReturnedDay)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReturnedDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+        <dd class="col-sm-10"> 
+            @{ 
+                var s = Model.Client.FirstName + " " + Model.Client.SecondName;
+            }
+            @Html.DisplayFor(model => s)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Book.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Book.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Book.Author)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Book.Author)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if(Model.ReturnedDay == null)
+    {
+    <span>
+        <a asp-action="ReturnBook" asp-route-id="@Model.Id">Return Book</a> |
+    </span>   
+    }
+    <a asp-action="Index">Back to List</a>
+</div>

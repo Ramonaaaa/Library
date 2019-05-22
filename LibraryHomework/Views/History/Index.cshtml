@@ -1,0 +1,62 @@
+﻿@model IEnumerable<LibraryHomework.Models.HistoryViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>History</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BorrowedDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReturnedDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookTitle)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowedDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnedDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookTitle)
+            </td>
+            @if (item.ReturnedDay == null)
+            {
+                <td>
+                    <a asp-action="ReturnBook" asp-route-id="@item.Id">Return book</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+            }
+
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+﻿@model LibraryStore.Domain.Entities.History
+
+@{
+    ViewData["Title"] = "ReturnBookConfirmation";
+}
+
+
+
+<h3>Are you sure you want to return this book?</h3>
+<div>
+    <h4>History</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BorrowedDay)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BorrowedDay)
+        </dd>
+        <dt class = "col-sm-2">
+            Client
+        </dt>
+        <dd class = "col-sm-10">
+           @Model.Client.FirstName @Model.Client.SecondName
+        </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Book)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Book.Name)
+        </dd class>
+    </dl>
+    
+    <form asp-action="ReturnBook">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Return" class="btn btn-info" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
